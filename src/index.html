@@ -5,9 +5,262 @@
   <title>TestProject</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
+<style>
+  * {
+      margin: 0;
+      padding: 0;
+    }
+    .navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 600px;
+    padding-bottom: 50px;
+  
+  }
+  .navbar-brand{
+    font-size: 1.5rem;
+    margin: .5rem;
+  }
+  
+  .navbar-flex div{
+    display: flex;
+  }
+  
+  .navbar-links ul{
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+  }
+  .navbar-links li a {
+    text-decoration: none;	
+    padding: 1rem;
+    display: block;
+  }
+  nav a{
+      text-decoration: none;
+  }
+  
+  nav ul li {
+      display: inline-block;
+      list-style: none;
+      padding: .36em 0.9375em;
+  }
+  li button{
+    /* padding: 10px 20px 50px 50px; */
+  }
+  
+  nav {   
+      font-size: 1.5em;
+      display: inline-block;    
+      overflow: hidden;
+      position: fixed;
+      top: 0;
+      /* width: 100%; */
+  }
+  .navbar {
+  /* background-color: #333; */
+  /* position: fixed; */
+  /* top: -50px; */
+  /* width: 100%; */
+  /* display: block; */
+  /* transition: top 0.3s; */
+  /* background-color: #333; */
+  /* overflow: hidden; */
+  /* position: fixed; */
+  /* top: 0; */
+  /* width: 100%; */
+}
+  
+  nav ul li{
+      margin: 0;
+      display: inline;
+      padding-right: .15em;
+  }
+  .links{
+    font-size: medium;
+  }
+  .subMain{
+    padding:0px 200px 100px 200px;
+    background-color: aliceblue;
+    /* position: fixed; */
+    
+  }
+  .mainDiv{
+    background-color: gray;
+    height: 800px;
+    padding: 200px 600px 100px 500px;
+  }
+  .mainDiv2{
+    background-color: rgb(238, 177, 177);
+    height: 500px;
+  }
+  .mainDiv3{
+    background-color: rgb(177, 226, 238);
+    height: 500px;
+  }
+  .mainDiv4{
+    background-color: rgb(171, 160, 235);
+    height: 500px;
+  }
+  .mainDiv5{
+    background-color: rgb(214, 233, 130);
+    height: 500px;
+  }
+  .mainDiv6{
+    background-color: rgb(91, 209, 230);
+    height: 500px;
+  }
+  .mainDiv7{
+    background-color: rgb(136, 231, 195);
+    height: 500px;
+  }
+  .divContent{
+    padding: 250px 100px 200px 600px;
+  }
+  .textDiv{
+    /* background-color: black; */
+    /* width: 500px; */
+    /* height: 500px; */
+  }
+  .addBtn{
+    width: 25px;
+    height: 25px;
+  }
+  </style>
+
 <body>
-  <app-root></app-root>
+  <nav>
+    <h2>Picker Wheel</h2>
+    <div class="navbar navbar-expand-lg bg-light">
+      <div className="navbar-links" id="navbarSupportedContent">
+        <ul>
+          <li class="links">HOME</li>
+          <li class="links">ABOUT</li>
+          <li class="links">SERVICE</li>
+          <li class="links">TESTIMONIALS</li>
+          <li class="links">PORTFOLIO</li>
+          <li class="links">CONTACT</li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="mainDiv">
+    <div>
+      <div class="headDiv">
+        <label>INPUTS </label>
+      </div>
+      <div class="textDiv">
+        <input type="text" placeholder="Input text here..." id="intext" width="50px" />    
+        <button class="addBtn" onclick="loadText()">+</button>
+      </div>
+      <div>
+        - - - - - - - - - - - - - - - - - - - - - - - - - -
+      </div>  
+      <div class="subMain">
+        <div >
+            <ul id="dynamic-list" class="list-group"></ul>
+        </div>
+        <i class="fa-solid fa-grip-vertical"></i>
+        <i class="fa-duotone fa-check"></i>
+        <i class="fa-solid fa-xmark"></i>
+      </div>
+    </div>
+    
+  </div>
+  <div class="mainDiv2">
+    <div class="divContent">SOME WORDS ABOUT US</div>
+  </div>
+  <div class="mainDiv3">
+    <div class="divContent">TAKE A LOOK AT OUR SERVICES</div>
+  </div>
+  <div class="mainDiv4">
+    <div class="divContent">SOME WORDS ABOUT US</div>
+  </div>
+  <div class="mainDiv5">
+    <div class="divContent">OUR WORKS</div>
+  </div>
+  <div class="mainDiv6">
+    <div class="divContent">WHAT OUR CLIENTS SAY ?</div>
+  </div>
+  <div class="mainDiv7">
+    <div class="divContent">CONTACT US</div>
+  </div>  
 </body>
 </html>
+
+<script>
+  var mainList = [];
+  // window.onscroll = function() {scrollFunction()};
+function loadText(){
+  var data = document.getElementById('intext').value;
+  if(data){
+
+  mainList.push(data);
+  var showCount = document.createElement("headDiv");
+  var ul = document.getElementById("dynamic-list");
+  var li = document.createElement("li");
+  li.setAttribute('id',mainList.length-1);  
+  li.setAttribute('class',"list-group-item");  
+  li.setAttribute("draggable",true);
+  li.setAttribute("draggable",true);
+  li.appendChild(document.createTextNode(mainList[mainList.length-1]));
+  // li.draggable();
+  let btn = document.createElement("button");
+  let dragbtn = document.createElement("button");
+  // btn.innerHTML = '<i class="fa-solid fa-check"></i>';
+  btn.innerHTML = "delete";
+  dragbtn.innerHTML = "drag";
+  // document.getElementsByClassName("list-group-item").draggable();
+  btn.setAttribute('id',mainList.length-1); 
+  btn.addEventListener("click", function (e) {
+    mainList.splice(e.target.id,1);
+    document.getElementById(e.target.id).remove();   
+
+});
+var dragId,dropId,enterId,count=0;
+li.addEventListener("dragstart", function(e){
+  console.log(e.target.id,"start");
+  dragId = e.target.id;
+  
+});
+li.addEventListener("dragenter", function(e){
+  console.log(e.target.id,"enterid");
+  enterId = e.target.id;
+  // console.log("drop");
+});
+li.addEventListener("dragend", function(e){
+  count = count+1;
+  if(count==1){
+    dropId = e.target.id;
+    console.log(dropId,"end");
+    var enterdata=mainList[dragId];
+    var dropdata=mainList[enterId];
+    // var curData = mainList.splice(dragId,1);
+    mainList[enterId]=mainList[dragId];
+    // mainList[dragId]=dropdata;
+    // mainList[dragId]=enterdata;
+  }
+});
+
+  li.appendChild(btn);
+  li.appendChild(dragbtn);
+  ul.appendChild(document.createTextNode(mainList.length));
+  ul.appendChild(li);
+}
+  // ul.appendChild('<i class="fa-solid fa-grip-vertical"></i>');
+  document.getElementById('intext').value = "";
+}
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    document.getElementById("navbar").style.top = "0";
+  } else {
+    document.getElementById("navbar").style.top = "-50px";
+  }
+}
+</script>
